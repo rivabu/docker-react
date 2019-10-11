@@ -23,7 +23,7 @@ script:
 #    secure: "$AWS_SECRET_KEY"
 deploy:
   provider: azure_web_apps
-  username: "rientsvanburen@hotmail.com"
+  username: "rivabu"
   password: "Straal02"
   site: "docker-react-rients"
   on:
