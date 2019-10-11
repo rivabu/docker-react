@@ -1,0 +1,12 @@
+FROM  node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+# RUN wordt meteen uitgevoerd
+RUN npm install
+
+COPY . .
+
+# CMD is the default command when the container runs, deze kan overriden worden in de docker compose
+CMD ["npm", "run", "start"]

@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t rivabu/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true rivabu/docker-react npm test --watch=false
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket-name: "elasticbeanstalk-us-east-2-007175125099"
+  bucket-path: "docker-react"
+  on:
+    branch: master
+
+  access_key_id:
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
